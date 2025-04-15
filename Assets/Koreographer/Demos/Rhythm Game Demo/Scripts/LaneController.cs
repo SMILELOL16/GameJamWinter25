@@ -17,7 +17,8 @@ namespace SonicBloom.Koreo.Demos
         [Header("Input System")]
         [Tooltip("Reference an InputAction from your Input Actions asset. Use a Value-type (e.g., Button) that returns 0 or 1.")]
         [SerializeField] public InputActionProperty inputButtonAction;
-        public bool inputConsumed = false;
+
+        [HideInInspector]public bool inputConsumed = false;
 
         [Header("Payload Filtering")]
         [Tooltip("Only events with these payloads will spawn notes in this lane.")]
@@ -28,7 +29,7 @@ namespace SonicBloom.Koreo.Demos
         public Transform TrackEnd;
 
         List<KoreographyEvent> laneEvents = new List<KoreographyEvent>();
-        Queue<NoteObject> trackedNotes = new Queue<NoteObject>();
+        public Queue<NoteObject> trackedNotes = new Queue<NoteObject>();
 
         RhythmGameController gameController;
         int pendingEventIdx = 0;
