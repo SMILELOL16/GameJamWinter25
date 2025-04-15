@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SonicBloom.Koreo.Demos
 {
-    public class NoteTracker : MonoBehaviour
+    public class ScoreManager : MonoBehaviour
     {
         [Tooltip("Reference to the LaneController that this tracker will listen to.")]
         [SerializeField] private LaneController lane;
