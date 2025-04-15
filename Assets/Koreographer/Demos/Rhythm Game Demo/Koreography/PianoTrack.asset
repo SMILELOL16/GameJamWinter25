@@ -16,6 +16,36 @@ MonoBehaviour:
   mEventList:
   - mStartSample: 1771
     mEndSample: 1771
+  - mStartSample: 18900
+    mEndSample: 37800
+  - mStartSample: 56700
+    mEndSample: 75600
+  - mStartSample: 94500
+    mEndSample: 113400
+  - mStartSample: 132300
+    mEndSample: 151200
+  - mStartSample: 170100
+    mEndSample: 189000
+  - mStartSample: 207900
+    mEndSample: 226800
+  - mStartSample: 245700
+    mEndSample: 359100
+  - mStartSample: 396900
+    mEndSample: 434700
+  - mStartSample: 453600
+    mEndSample: 491400
+  - mStartSample: 510300
+    mEndSample: 548100
+  - mStartSample: 567000
+    mEndSample: 604800
+  - mStartSample: 623700
+    mEndSample: 774900
+  - mStartSample: 793800
+    mEndSample: 850500
+  - mStartSample: 869400
+    mEndSample: 1020600
+  - mStartSample: 1039500
+    mEndSample: 1190700
   - mStartSample: 2229607
     mEndSample: 2229607
   - mStartSample: 2258941
@@ -42,4 +72,19 @@ MonoBehaviour:
   _SpectrumPayloadIdxs: 
   _TextPayloads:
   - mTextVal: D#/Eb
-  _TextPayloadIdxs: 00000000
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
