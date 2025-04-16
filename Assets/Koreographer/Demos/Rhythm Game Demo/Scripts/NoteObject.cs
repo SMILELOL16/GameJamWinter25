@@ -1,239 +1,165 @@
-﻿//----------------------------------------------
-//            	   Koreographer                 
-//    Copyright © 2014-2024 Sonic Bloom, LLC    
-//----------------------------------------------
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SonicBloom.Koreo.Demos
 {
-	[AddComponentMenu("Koreographer/Demos/Rhythm Game/Note Object")]
-	public class NoteObject : MonoBehaviour
-	{
-		#region Fields
+    [AddComponentMenu("Koreographer/Demos/Rhythm Game/Note Object")]
+    public class NoteObject : MonoBehaviour
+    {
+        [Tooltip("The visual to use for this Note Object.")]
+        public SpriteRenderer visuals;
 
-		[Tooltip("The visual to use for this Note Object.")]
-		public SpriteRenderer visuals;
-		public enum ScaleAxis { Height, Width }
+        public enum ScaleAxis { Height, Width }
+        public enum Feedback { Miss, Good, Perfect }
 
-		[Tooltip("Choose whether to scale the note's height or width based on its duration.")]
-		public ScaleAxis scaleAxis = ScaleAxis.Height;
-		[Tooltip("The offset is relative to the parent object.")][Range(-180f, 180f)]
-		[SerializeField]private float rotationOffset = 0f;
+        [Tooltip("Choose whether to scale the note's height or width based on its duration.")]
+        public ScaleAxis scaleAxis = ScaleAxis.Height;
 
-		// If active, the KoreographyEvent that this Note Object wraps.  Contains the relevant timing information.
-		KoreographyEvent trackedEvent;
+        [Tooltip("The offset is relative to the parent object.")]
+        [SerializeField, Range(-180f, 180f)] private float rotationOffset = 0f;
 
-		// If active, the Lane Controller that this Note Object is contained by.
-		LaneController laneController;
+        KoreographyEvent trackedEvent;
+        LaneController laneController;
+        RhythmGameController gameController;
 
-		// If active, the Rhythm Game Controller that controls the game this Note Object is found within.
-		RhythmGameController gameController;
+        private bool isPressed = false;
+        private bool pressedOnTime = false;
+        private bool releasedOnTime = false;
+        private bool hasBeenEvaluated = false;
 
-		#endregion
-		#region Static Methods
-		
-		// Unclamped Lerp.  Same as Vector3.Lerp without the [0.0-1.0] clamping.
-		static Vector3 Lerp(Vector3 from, Vector3 to, float t)
-		{
-			return new Vector3 (from.x + (to.x - from.x) * t, from.y + (to.y - from.y) * t, from.z + (to.z - from.z) * t);
-		}
+        public void Initialize(KoreographyEvent evt, Color color, LaneController laneCont, RhythmGameController gameCont)
+        {
+            Reset();
+            trackedEvent = evt;
+            visuals.color = color;
+            laneController = laneCont;
+            gameController = gameCont;
 
-		#endregion
-		#region Methods
+            isPressed = false;
+            pressedOnTime = false;
+            releasedOnTime = false;
+            hasBeenEvaluated = false;
 
-		// Prepares the Note Object for use.
-		public void Initialize(KoreographyEvent evt, Color color, LaneController laneCont, RhythmGameController gameCont)
-		{
-			trackedEvent = evt;
-			visuals.color = color;
-			laneController = laneCont;
-			gameController = gameCont;
+            UpdatePosition();
+        }
 
-			UpdatePosition();
-		}
+        void Update()
+        {
+            if (trackedEvent == null || laneController == null || gameController == null || hasBeenEvaluated)
+                return;
 
-		// Resets the Note Object to its default state.
-		void Reset()
-		{
-			trackedEvent = null;
-			laneController = null;
-			gameController = null;
-		}
+            float inputValue = laneController.GetInputValue();
+            int currentSample = gameController.DelayedSampleTime;
 
-		void Update()
-		{
-			ScalePrefab();
-			UpdatePosition();
+            int noteStart = trackedEvent.StartSample;
+            int noteEnd = trackedEvent.EndSample;
+            int hitWindow = gameController.HitWindowSampleWidth;
 
-			float distanceFromEnd = Vector3.Distance(transform.position, laneController.TargetPosition);
-			if (distanceFromEnd > laneController.DespawnDistance)
-			{
-				gameController.ReturnNoteObjectToPool(this);
-				Reset();
-			}
-		}
+            if (!isPressed && inputValue > 0.5f &&!laneController.inputConsumed)
+            {
+                if (currentSample >= noteStart && currentSample <= noteEnd)
+                {
+                    isPressed = true;
+                    pressedOnTime = Mathf.Abs(currentSample - noteStart) <= hitWindow;
+                    laneController.RaiseNoteStateChanged(true);
+                }
+                else if (currentSample > noteEnd)
+                {
+                    Evaluate(forceMiss: true);
+                    return;
+                }
+            }
 
-		// Updates the height of the Note Object.  This is relative to the speed at which the notes fall and 
-		//  the specified Hit Window range.
-		void ScalePrefab()
-		{
-			int durationSamples = trackedEvent.EndSample - trackedEvent.StartSample;
-			float durationSeconds = durationSamples / (float)gameController.SampleRate;
-			float visualLength = durationSeconds * gameController.noteSpeed;
+            if (isPressed && inputValue <= 0.1f && !hasBeenEvaluated)
+            {
+                releasedOnTime = Mathf.Abs(currentSample - noteEnd) <= hitWindow;
+                laneController.RaiseNoteStateChanged(true);
+                Evaluate();
+            }
 
-			// Fallback for tap notes
-			if (durationSamples <= 0)
-			{
-				visualLength = gameController.WindowSizeInUnits * 2f;
-			}
+            if (currentSample > noteEnd + hitWindow)
+            {
+                Evaluate(!isPressed ? true : false);
+            }
 
-			// Get base sprite size in world units
-			float baseUnitWidth = visuals.sprite.rect.width / visuals.sprite.pixelsPerUnit;
-			float baseUnitHeight = visuals.sprite.rect.height / visuals.sprite.pixelsPerUnit;
-			
+            ScalePrefab();
+            UpdatePosition();
+        }
 
-			// Set SpriteRenderer draw mode to Tiled (needed to use .size)
-			if (visuals.drawMode != SpriteDrawMode.Tiled)
-			{
-				visuals.drawMode = SpriteDrawMode.Tiled;
-			}
+        void Evaluate(bool forceMiss = false)
+        {
+            if (hasBeenEvaluated) return;
+            
+            laneController.RaiseNoteStateChanged(false);
+            
+            Feedback result = Feedback.Miss;
+            
+            if (forceMiss || (!pressedOnTime && !releasedOnTime))
+                result = Feedback.Miss;
+            else if (pressedOnTime && releasedOnTime)
+                result = Feedback.Perfect;
+            else
+                result = Feedback.Good;
 
-			// Copy current size to preserve the axis we’re not changing
-			Vector2 size = visuals.size;
+            laneController.RaiseFeedback(result);
+            Debug.Log($"Note Judged: {result}");
 
-			if (scaleAxis == ScaleAxis.Height)
-			{
-				size.y = visualLength; // Height in world units
-			}
-			else // Width
-			{
-				size.x = visualLength; // Width in world units
-			}
-			visuals.size = size;
-		}
+            hasBeenEvaluated = true;
+            OnClear();
+        }
 
+        void ScalePrefab()
+        {
+            if (visuals == null) return;
 
+            int durationSamples = trackedEvent.EndSample - trackedEvent.StartSample;
+            float durationSeconds = durationSamples / (float)gameController.SampleRate;
+            float visualLength = durationSeconds * gameController.noteSpeed;
 
+            if (durationSamples <= 0)
+                visualLength = gameController.WindowSizeInUnits * 2f;
 
-		// Updates the position of the Note Object along the Lane based on current audio position.
-		// Interpolates between TrackStart and TrackEnd based on sample time
-		void UpdatePosition()
-		{
-			int noteSample = trackedEvent.StartSample;
-			int currentSample = gameController.DelayedSampleTime;
+            if (visuals.drawMode != SpriteDrawMode.Tiled)
+                visuals.drawMode = SpriteDrawMode.Tiled;
 
-			float sampleOffset = (noteSample - currentSample);
-			float secondsToTarget = sampleOffset / (float)gameController.SampleRate;
-			float distanceToTarget = secondsToTarget * gameController.noteSpeed;
+            Vector2 size = visuals.size;
+            if (scaleAxis == ScaleAxis.Height)
+                size.y = visualLength;
+            else
+                size.x = visualLength;
 
-			Vector3 start = laneController.SpawnPosition;
-			Vector3 end = laneController.TargetPosition;
-			Vector3 direction = (end - start).normalized;
+            visuals.size = size;
+        }
 
-			// Set position
-			transform.position = end - direction * distanceToTarget;
+        void UpdatePosition()
+        {
+            int currentSample = gameController.DelayedSampleTime;
+            float secondsToTarget = (trackedEvent.StartSample - currentSample) / (float)gameController.SampleRate;
+            float distanceToTarget = secondsToTarget * gameController.noteSpeed;
 
-			// Set rotation to face direction and apply offset
-			if (direction != Vector3.zero)
-			{
-				// Default rotation facing direction
-				Quaternion facingRotation = Quaternion.LookRotation(Vector3.forward, direction);
-				
-				Quaternion offset = Quaternion.Euler(0f, 0f, rotationOffset);
+            Vector3 start = laneController.SpawnPosition;
+            Vector3 end = laneController.TargetPosition;
+            Vector3 direction = (end - start).normalized;
 
-				// Final rotation
-				transform.rotation = facingRotation * offset;
-			}
-		}
+            transform.position = end - direction * distanceToTarget;
 
+            if (direction != Vector3.zero)
+            {
+                Quaternion facingRotation = Quaternion.LookRotation(Vector3.forward, direction);
+                Quaternion offset = Quaternion.Euler(0f, 0f, rotationOffset);
+                transform.rotation = facingRotation * offset;
+            }
+        }
 
-		// Checks to see if the Note Object is currently hittable or not based on current audio sample
-		//  position and the configured hit window width in samples (this window used during checks for both
-		//  before/after the specific sample time of the Note Object).
-		public bool IsNoteHittable()
-		{
-			int noteTime = trackedEvent.StartSample;
-			int curTime = gameController.DelayedSampleTime;
-			int hitWindow = gameController.HitWindowSampleWidth;
+        public void OnClear()
+        {
+            gameController.ReturnNoteObjectToPool(this);
+        }
 
-			return (Mathf.Abs(noteTime - curTime) <= hitWindow);
-		}
-
-		// Checks to see if the note is no longer hittable based on the configured hit window width in
-		//  samples.
-		public bool IsNoteMissed()
-		{
-			bool bMissed = true;
-
-			if (enabled)
-			{
-				int noteTime = trackedEvent.StartSample;
-				int curTime = gameController.DelayedSampleTime;
-				int hitWindow = gameController.HitWindowSampleWidth;
-
-				bMissed = (curTime - noteTime > hitWindow);
-			}
-			
-			return bMissed;
-		}
-
-		// Returns this Note Object to the pool which is controlled by the Rhythm Game Controller.  This
-		//  helps reduce runtime allocations.
-		void ReturnToPool()
-		{
-			gameController.ReturnNoteObjectToPool(this);
-			Reset();
-		}
-
-		// Performs actions when the Note Object is hit.
-		public void OnHit()
-		{
-			ReturnToPool();
-		}
-
-		// Performs actions when the Note Object is cleared.
-		public void OnClear()
-		{
-			ReturnToPool();
-		}
-
-		#endregion
-		void OnDrawGizmosSelected()
-		{
-			if (laneController == null || gameController == null || trackedEvent == null)
-				return;
-
-			Vector3 start = laneController.SpawnPosition;
-			Vector3 end = laneController.TargetPosition;
-			Vector3 direction = (end - start).normalized;
-
-			// === Compute rotation with offset ===
-			Quaternion baseRotation = Quaternion.LookRotation(Vector3.forward, direction);
-			Quaternion offsetRotation = Quaternion.Euler(0f, 0f, rotationOffset);
-			Quaternion finalRotation = baseRotation * offsetRotation;
-
-			Vector3 rotatedForward = finalRotation * Vector3.up;
-
-			// === StartSample ===
-			int startSample = trackedEvent.StartSample;
-			float startOffset = (startSample - gameController.DelayedSampleTime) / (float)gameController.SampleRate;
-			float startDistance = startOffset * gameController.noteSpeed;
-			Vector3 startSamplePosition = end - direction * startDistance;
-
-			Gizmos.color = Color.green;
-			Gizmos.DrawLine(startSamplePosition, startSamplePosition + rotatedForward * 0.5f);
-
-			// === EndSample ===
-			int endSample = trackedEvent.EndSample;
-			float endOffset = (endSample - gameController.DelayedSampleTime) / (float)gameController.SampleRate;
-			float endDistance = endOffset * gameController.noteSpeed;
-			Vector3 endSamplePosition = end - direction * endDistance;
-
-			Gizmos.color = Color.red;
-			Gizmos.DrawLine(endSamplePosition, endSamplePosition + rotatedForward * 0.5f);
-		}
-
-
-	}
+        void Reset()
+        {
+            trackedEvent = null;
+            laneController = null;
+            gameController = null;
+        }
+    }
 }

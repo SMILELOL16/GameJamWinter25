@@ -1,17 +1,26 @@
-﻿using UnityEngine;
+﻿// Top of the file
+using UnityEngine;
 using System.Collections.Generic;
-using SonicBloom.Koreo.Demos;
+using UnityEngine.InputSystem;
 
 namespace SonicBloom.Koreo.Demos
 {
     [AddComponentMenu("Koreographer/Demos/Rhythm Game/Lane Controller")]
     public class LaneController : MonoBehaviour
     {
-        #region Fields
-
+       
+        
+        
         public Color color = Color.blue;
         public SpriteRenderer targetVisuals;
-        public KeyCode keyboardButton;
+
+        [Header("Input System")]
+        [Tooltip("Reference an InputAction from your Input Actions asset. Use a Value-type (e.g., Button) that returns 0 or 1.")]
+        [SerializeField] public InputActionProperty inputButtonAction;
+        public bool inputConsumed = false;
+
+        [Header("Payload Filtering")]
+        [Tooltip("Only events with these payloads will spawn notes in this lane.")]
         public List<string> matchedPayloads = new List<string>();
 
         [Header("Track Bounds")]
@@ -29,19 +38,22 @@ namespace SonicBloom.Koreo.Demos
         float scalePress = 1.4f;
         float scaleHold = 1.2f;
 
-        #endregion
-
-        #region Properties
-
         public Vector3 SpawnPosition => TrackStart.position;
         public Vector3 TargetPosition => TrackEnd.position;
-
-        // Despawn zone can be slightly after the end
         public float DespawnDistance => Vector3.Distance(TrackStart.position, TrackEnd.position) + 2f;
-
-        #endregion
-
-        #region Methods
+        
+        
+        public event System.Action<bool> OnNoteStateChanged;
+        public event System.Action<NoteObject.Feedback> OnFeedback;
+        public void RaiseFeedback(NoteObject.Feedback feedback)
+        {
+            OnFeedback?.Invoke(feedback);
+        }
+        public void RaiseNoteStateChanged(bool isPressed)
+        {
+            OnNoteStateChanged?.Invoke(isPressed);
+            if (!isPressed) inputConsumed = true;
+        }
 
         public void Initialize(RhythmGameController controller)
         {
@@ -70,10 +82,12 @@ namespace SonicBloom.Koreo.Demos
         {
             if (TrackStart == null || TrackEnd == null)
             {
-                Debug.LogError("TrackStart or TrackEnd not assigned in LaneController.");
+                Debug.LogError("TrackStart or TrackEnd not assigned.");
                 enabled = false;
                 return;
             }
+
+            inputButtonAction.action.Enable();
 
             targetVisuals.color = color;
             defaultScale = targetVisuals.transform.localScale;
@@ -81,47 +95,32 @@ namespace SonicBloom.Koreo.Demos
 
         void Update()
         {
-            while (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteMissed())
+            
+            
+            while (trackedNotes.Count > 0 && trackedNotes.Peek() == null)
             {
                 trackedNotes.Dequeue();
             }
 
             CheckSpawnNext();
 
-            if (Input.GetKeyDown(keyboardButton))
-            {
-                CheckNoteHit();
+            float input = GetInputValue();
+
+            if (input > 0.5f)
                 SetScalePress();
-            }
-            else if (Input.GetKey(keyboardButton))
-            {
+            else if (input > 0f)
                 SetScaleHold();
-            }
-            else if (Input.GetKeyUp(keyboardButton))
+            else
             {
                 SetScaleDefault();
+                inputConsumed = false;
             }
+            
         }
 
-        void AdjustScale(float multiplier)
+        public float GetInputValue()
         {
-            targetVisuals.transform.localScale = defaultScale * multiplier;
-        }
-
-        int GetSpawnSampleOffset()
-        {
-            float distanceToTravel = Vector3.Distance(TrackStart.position, TrackEnd.position);
-            double secondsToTarget = distanceToTravel / gameController.noteSpeed;
-            return (int)(secondsToTarget * gameController.SampleRate);
-        }
-
-        public void CheckNoteHit()
-        {
-            if (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteHittable())
-            {
-                NoteObject hitNote = trackedNotes.Dequeue();
-                hitNote.OnHit();
-            }
+            return inputButtonAction.action?.ReadValue<float>() ?? 0f;
         }
 
         void CheckSpawnNext()
@@ -135,14 +134,19 @@ namespace SonicBloom.Koreo.Demos
                 KoreographyEvent evt = laneEvents[pendingEventIdx];
 
                 NoteObject newObj = gameController.GetFreshNoteObject();
-
-                // Start at TrackStart and move toward TrackEnd
                 newObj.transform.position = TrackStart.position;
                 newObj.Initialize(evt, color, this, gameController);
 
                 trackedNotes.Enqueue(newObj);
                 pendingEventIdx++;
             }
+        }
+
+        int GetSpawnSampleOffset()
+        {
+            float distanceToTravel = Vector3.Distance(TrackStart.position, TrackEnd.position);
+            double secondsToTarget = distanceToTravel / gameController.noteSpeed;
+            return (int)(secondsToTarget * gameController.SampleRate);
         }
 
         public void AddEventToLane(KoreographyEvent evt)
@@ -152,18 +156,16 @@ namespace SonicBloom.Koreo.Demos
 
         public bool DoesMatchPayload(string payload)
         {
-            foreach (var item in matchedPayloads)
-            {
-                if (payload == item)
-                    return true;
-            }
-            return false;
+            return matchedPayloads.Contains(payload);
+        }
+
+        void AdjustScale(float multiplier)
+        {
+            targetVisuals.transform.localScale = defaultScale * multiplier;
         }
 
         public void SetScaleDefault() => AdjustScale(scaleNormal);
         public void SetScalePress() => AdjustScale(scalePress);
         public void SetScaleHold() => AdjustScale(scaleHold);
-
-        #endregion
     }
 }

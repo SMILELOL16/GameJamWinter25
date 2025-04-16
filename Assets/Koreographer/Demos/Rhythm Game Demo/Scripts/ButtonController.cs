@@ -35,7 +35,7 @@ namespace SonicBloom.Koreo.Demos
 			// Change our button setup depending on whether we're using Touch Input or not.  For brevity,
 			//  only iOS and Android are currently handled.
 #if !(UNITY_IOS || UNITY_ANDROID)
-			textCom.text = laneController.keyboardButton.ToString();
+			textCom.text = laneController.inputButtonAction.action?.name ?? "None";
 		
 			// Adjust the brightness of the text for readability.  We get the "brightness" of the
 			//  color with grayscale and then invert it to get a feasible brightness.
