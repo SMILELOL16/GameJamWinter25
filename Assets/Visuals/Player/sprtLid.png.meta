@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5dbdf0514aab15b478f79c9f536bc3ce
+guid: 340456f2245f73f40bbec0a538dfcab3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4572850810819156193
-    second: sprtTempPoloroid_0
+      213: 8367029293587392306
+    second: sprtLid_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,10 +49,10 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
-  alignment: 5
-  spritePivot: {x: 1, y: 0.5}
-  spritePixelsToUnits: 16
-  spriteBorder: {x: 4, y: 7, z: 4, w: 21}
+  alignment: 9
+  spritePivot: {x: 0.2028627, y: 0.8629925}
+  spritePixelsToUnits: 120
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprtTempPoloroid_0
+      name: sprtLighterLid
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 13
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 77
+        y: 602
+        width: 138
+        height: 94
+      alignment: 9
+      pivot: {x: 0.026412189, y: 0.079256095}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e89bbd9597067f30800000000000000
-      internalID: 4572850810819156193
+      spriteID: 2376095efc8ad1470800000000000000
+      internalID: 8367029293587392306
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sprtTempPoloroid_0: 4572850810819156193
+      sprtLighterLid: 8367029293587392306
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
