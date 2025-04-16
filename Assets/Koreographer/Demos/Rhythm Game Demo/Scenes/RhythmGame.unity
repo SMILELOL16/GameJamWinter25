@@ -2103,6 +2103,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -5794440744163280654, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  inputConsumed: 0
   matchedPayloads:
   - F#/Gb
   - G
@@ -2981,6 +2982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1622623265}
   - component: {fileID: 1622623264}
+  - component: {fileID: 1622623266}
   m_Layer: 0
   m_Name: Gameplay Controller
   m_TagString: Untagged
@@ -3023,6 +3025,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1622623266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622623263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fd3822bd6fa9243b9c6fc05cdefb5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lane: {fileID: 1146996549}
+  lossThresholdPercent: 20
 --- !u!1 &1878567711
 GameObject:
   m_ObjectHideFlags: 0
