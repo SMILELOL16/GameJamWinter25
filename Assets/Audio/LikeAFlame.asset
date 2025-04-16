@@ -16,24 +16,38 @@ MonoBehaviour:
   mEventList:
   - mStartSample: 56745
     mEndSample: 78780
-  - mStartSample: 96030
-    mEndSample: 118065
+  - mStartSample: 96990
+    mEndSample: 119025
   - mStartSample: 163930
-    mEndSample: 185965
-  - mStartSample: 202924
-    mEndSample: 218056
+    mEndSample: 183771
+  - mStartSample: 203499
+    mEndSample: 217863
   - mStartSample: 236292
     mEndSample: 291388
   - mStartSample: 306714
     mEndSample: 321264
-  - mStartSample: 336202
-    mEndSample: 336202
-  - mStartSample: 450856
+  - mStartSample: 345660
+    mEndSample: 345660
+  - mStartSample: 451402
     mEndSample: 468704
-  - mStartSample: 479568
-    mEndSample: 504982
-  - mStartSample: 530978
-    mEndSample: 548826
+  - mStartSample: 477960
+    mEndSample: 504288
+  - mStartSample: 531172
+    mEndSample: 531172
+  - mStartSample: 557190
+    mEndSample: 570759
+  - mStartSample: 574264
+    mEndSample: 587670
+  - mStartSample: 610176
+    mEndSample: 636880
+  - mStartSample: 662976
+    mEndSample: 679072
+  - mStartSample: 689472
+    mEndSample: 705696
+  - mStartSample: 715968
+    mEndSample: 732768
+  - mStartSample: 742875
+    mEndSample: 742875
   _SerializedPayloadTypes:
   - SonicBloom.Koreo.TextPayload
   _AssetPayloads: []
@@ -61,4 +75,11 @@ MonoBehaviour:
   - mTextVal: G
   - mTextVal: G
   - mTextVal: G
-  _TextPayloadIdxs: 00000000010000000200000003000000040000000500000006000000070000000800000009000000
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  - mTextVal: G
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000
