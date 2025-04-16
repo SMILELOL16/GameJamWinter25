@@ -25,6 +25,9 @@ namespace SonicBloom.Koreo.Demos
         private bool pressedOnTime = false;
         private bool releasedOnTime = false;
         private bool hasBeenEvaluated = false;
+        
+        private int noteStart; // int noteStart
+        private int noteEnd; // int noteEnd
 
         public void Initialize(KoreographyEvent evt, Color color, LaneController laneCont, RhythmGameController gameCont)
         {
@@ -50,9 +53,11 @@ namespace SonicBloom.Koreo.Demos
             float inputValue = laneController.GetInputValue();
             int currentSample = gameController.DelayedSampleTime;
 
-            int noteStart = trackedEvent.StartSample;
-            int noteEnd = trackedEvent.EndSample;
+            noteStart = trackedEvent.StartSample;
+            noteEnd = trackedEvent.EndSample;
+            
             int hitWindow = gameController.HitWindowSampleWidth;
+            if (noteEnd - noteStart <= 0) noteEnd = noteStart + hitWindow;
 
             if (!isPressed && inputValue > 0.5f &&!laneController.inputConsumed)
             {
@@ -116,7 +121,7 @@ namespace SonicBloom.Koreo.Demos
             float visualLength = durationSeconds * gameController.noteSpeed;
 
             if (durationSamples <= 0)
-                visualLength = gameController.WindowSizeInUnits * 2f;
+                visualLength = gameController.WindowSizeInUnits *2f;
 
             if (visuals.drawMode != SpriteDrawMode.Tiled)
                 visuals.drawMode = SpriteDrawMode.Tiled;
@@ -160,6 +165,34 @@ namespace SonicBloom.Koreo.Demos
             trackedEvent = null;
             laneController = null;
             gameController = null;
+        }
+        
+        void OnDrawGizmosSelected()
+        {
+            if (laneController == null || gameController == null || trackedEvent == null)
+                return;
+
+            Vector3 start = laneController.SpawnPosition;
+            Vector3 end = laneController.TargetPosition;
+            Vector3 direction = (end - start).normalized;
+
+            // === StartSample ===
+            int startSample = noteStart;
+            float startOffset = (startSample - gameController.DelayedSampleTime) / (float)gameController.SampleRate;
+            float startDistance = startOffset * gameController.noteSpeed;
+            Vector3 startSamplePosition = end - direction * startDistance;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(startSamplePosition, startSamplePosition + Vector3.up * 0.5f);
+
+            // === EndSample ===
+            int endSample = noteEnd;
+            float endOffset = (endSample - gameController.DelayedSampleTime) / (float)gameController.SampleRate;
+            float endDistance = endOffset * gameController.noteSpeed;
+            Vector3 endSamplePosition = end - direction * endDistance;
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(endSamplePosition, endSamplePosition + Vector3.up * 0.5f);
         }
     }
 }
