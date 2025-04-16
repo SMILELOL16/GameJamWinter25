@@ -14,16 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mEventID: Piano
   mEventList:
-  - mStartSample: 1771
-    mEndSample: 1771
-  - mStartSample: 2229607
-    mEndSample: 2229607
-  - mStartSample: 2258941
-    mEndSample: 2258941
-  - mStartSample: 2343794
-    mEndSample: 2343794
-  - mStartSample: 2381397
-    mEndSample: 2381397
+  - mStartSample: 0
+    mEndSample: 0
+  - mStartSample: 18900
+    mEndSample: 18900
+  - mStartSample: 37800
+    mEndSample: 37800
+  - mStartSample: 56700
+    mEndSample: 56700
+  - mStartSample: 75600
+    mEndSample: 75600
+  - mStartSample: 94500
+    mEndSample: 94500
+  - mStartSample: 113400
+    mEndSample: 113400
+  - mStartSample: 132300
+    mEndSample: 132300
+  - mStartSample: 170100
+    mEndSample: 283500
   _SerializedPayloadTypes:
   - SonicBloom.Koreo.TextPayload
   _AssetPayloads: []
@@ -41,5 +49,13 @@ MonoBehaviour:
   _SpectrumPayloads: []
   _SpectrumPayloadIdxs: 
   _TextPayloads:
-  - mTextVal: D#/Eb
-  _TextPayloadIdxs: 00000000
+  - mTextVal: 
+  - mTextVal: 
+  - mTextVal: 
+  - mTextVal: 
+  - mTextVal: 
+  - mTextVal: 
+  - mTextVal: 
+  - mTextVal: 
+  - mTextVal: G
+  _TextPayloadIdxs: 000000000100000002000000030000000400000005000000060000000700000008000000
