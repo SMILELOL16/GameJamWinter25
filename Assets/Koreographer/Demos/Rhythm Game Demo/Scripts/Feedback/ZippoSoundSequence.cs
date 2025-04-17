@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Ami.BroAudio;
 using Ami.BroAudio.Runtime;
+using UnityEngine.Serialization;
 
 namespace SonicBloom.Koreo.Demos
 {
@@ -22,11 +23,16 @@ namespace SonicBloom.Koreo.Demos
         public UnityEvent noteStart;
         public UnityEvent noteEnd;
 
+        private Animator _animator;
+        [SerializeField]private string _animatorStateBool = "IsZippoOpen";
+
         private void OnEnable()
         {
+            _animator = GetComponent<Animator>();
             if (laneController != null)
             {
                 laneController.OnNoteStateChanged += HandleNoteStateChanged;
+                
             }
         }
 
@@ -54,6 +60,7 @@ namespace SonicBloom.Koreo.Demos
                 noteEnd?.Invoke();
                 SoundManager.Instance.Play(zippoClose);
             }
+            _animator.SetBool(_animatorStateBool, active);
         }
     }
 }
