@@ -242,6 +242,29 @@ namespace SonicBloom.Koreo.Demos
 			// Reinitialize the lead-in-timing.
 			InitializeLeadIn();
 		}
+		
+		// Pauses or resumes the game, including audio and time scale.
+		public void Pause(bool shouldPause)
+		{
+			if (shouldPause)
+			{
+				// Pause only if not already paused
+				if (audioCom.isPlaying)
+				{
+					audioCom.Pause();
+					Time.timeScale = 0f;
+				}
+			}
+			else
+			{
+				// Resume only if currently paused
+				if (!audioCom.isPlaying)
+				{
+					audioCom.Play();
+					Time.timeScale = 1f;
+				}
+			}
+		}
 
 		#endregion
 	}
