@@ -62,7 +62,7 @@ namespace SonicBloom.Koreo.Demos
             if (noteEnd - noteStart <= 0) noteEnd = noteStart + hitWindow;
             
             // === Burn calculation ===
-            burn = Mathf.InverseLerp(noteStart, noteEnd, currentSample);
+            if (isPressed) burn = Mathf.InverseLerp(noteStart, noteEnd, currentSample);
             
             // === Input handling ===
 
@@ -172,6 +172,7 @@ namespace SonicBloom.Koreo.Demos
             trackedEvent = null;
             laneController = null;
             gameController = null;
+            burn = 0f;
         }
         
         void OnDrawGizmosSelected()

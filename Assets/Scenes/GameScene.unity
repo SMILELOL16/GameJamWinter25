@@ -829,7 +829,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0.006088257
-        value: 0.08468437
+        value: 0.031354904
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1638,7 +1638,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.37
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -15,8 +15,10 @@ namespace SonicBloom.Koreo.Demos
         public SoundID zippoOpen;
         public SoundID zippoStrike;
         public SoundID zippoClose;
-
+        
         [Header("Unity Events")]
+        [Header("Hook up additional actions or effects ")]
+        [Header("to be triggered when a note starts or ends.")]
         public UnityEvent noteStart;
         public UnityEvent noteEnd;
 
