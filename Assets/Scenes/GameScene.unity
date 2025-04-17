@@ -1623,7 +1623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPlayOnAwake: 0
-  koreography: {fileID: 11400000, guid: 6064e1207b2e14afa8330f66cddc8e22, type: 2}
+  koreography: {fileID: 11400000, guid: 3f3e6a0b9930ee34991051385639816e, type: 2}
   targetKoreographer: {fileID: 0}
 --- !u!82 &537630455
 AudioSource:
@@ -2820,6 +2820,67 @@ MonoBehaviour:
   laneController: {fileID: 1146996549}
   imageCom: {fileID: 1445413024}
   textCom: {fileID: 1303175720}
+--- !u!1001 &1499884107
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2829505069438841759, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_Name
+      value: sprtHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002699557687979004, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954535414594339302, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
+      propertyPath: laneController
+      value: 
+      objectReference: {fileID: 1146996549}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4bd912b16dc03f84e871a690883281e2, type: 3}
 --- !u!1 &1506543328
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,9 +3111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a6779e70b3c42f9b49aa854490bbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: Piano
+  eventID: DespairTrack
   hitWindowRangeInMS: 100
-  noteSpeed: 4
+  noteSpeed: 6
   noteObjectArchetype: {fileID: 7567219796013056786, guid: 4329deecb5d512240b0ae27dcfac364e, type: 3}
   noteLanes:
   - {fileID: 1146996549}
@@ -3665,6 +3726,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHand
       objectReference: {fileID: 0}
+    - target: {fileID: 2684934296778481964, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5896033632870335365, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3690,3 +3755,4 @@ SceneRoots:
   - {fileID: 1650437102}
   - {fileID: 520129363}
   - {fileID: 7410470916090736526}
+  - {fileID: 1499884107}
