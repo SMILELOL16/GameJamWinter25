@@ -13,7 +13,7 @@ public class MenuController : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
     }
 
-    public void PlayGame() => SceneManager.LoadScene("Gameplay");
+    public void PlayGame() => SceneManager.LoadScene("RhythmGame");
    
     public void QuitGame() => Application.Quit();
 
