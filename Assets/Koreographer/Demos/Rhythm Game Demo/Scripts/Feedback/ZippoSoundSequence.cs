@@ -29,6 +29,7 @@ namespace SonicBloom.Koreo.Demos
         private void OnEnable()
         {
             _animator = GetComponent<Animator>();
+            if (_animator == null) Debug.Log("Animator not found");
             if (laneController != null)
             {
                 laneController.OnNoteStateChanged += HandleNoteStateChanged;
