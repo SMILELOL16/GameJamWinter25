@@ -3050,7 +3050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a6779e70b3c42f9b49aa854490bbbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: Piano
+  eventID: DespairTrack
   hitWindowRangeInMS: 100
   noteSpeed: 4
   noteObjectArchetype: {fileID: 7567219796013056786, guid: 4329deecb5d512240b0ae27dcfac364e, type: 3}
