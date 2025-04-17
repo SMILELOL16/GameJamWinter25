@@ -90,7 +90,7 @@ namespace SonicBloom.Koreo.Demos
 
             inputButtonAction.action.Enable();
 
-            targetVisuals.color = color;
+            //targetVisuals.color = color;
             defaultScale = targetVisuals.transform.localScale;
         }
 

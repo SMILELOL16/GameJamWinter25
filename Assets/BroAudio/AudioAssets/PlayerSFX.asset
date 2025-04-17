@@ -101,7 +101,7 @@ MonoBehaviour:
     - AudioClip: {fileID: 8300000, guid: 760f5abcddfc5cb4b968651a6dd3a53d, type: 3}
       Volume: 1
       Delay: 0
-      StartPosition: 0.177
+      StartPosition: 0.079
       EndPosition: 0
       FadeIn: 0
       FadeOut: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
     - AudioClip: {fileID: 8300000, guid: 0614baf590fce6c4abc250451e2d617f, type: 3}
       Volume: 1
       Delay: 0
-      StartPosition: 0.177
+      StartPosition: 0.078
       EndPosition: 0
       FadeIn: 0
       FadeOut: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
     - AudioClip: {fileID: 8300000, guid: 7e28bd34da5eca84b8643c98dee431d7, type: 3}
       Volume: 1
       Delay: 0
-      StartPosition: 0.224
+      StartPosition: 0.097
       EndPosition: 0
       FadeIn: 0
       FadeOut: 0
