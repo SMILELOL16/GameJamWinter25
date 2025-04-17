@@ -28,6 +28,8 @@ namespace SonicBloom.Koreo.Demos
         
         private int noteStart; // int noteStart
         private int noteEnd; // int noteEnd
+        
+        public float burn = 0f; // === Burn value (0 to 1 normalized time between noteStart and noteEnd) ===
 
         public void Initialize(KoreographyEvent evt, Color color, LaneController laneCont, RhythmGameController gameCont)
         {
@@ -58,6 +60,11 @@ namespace SonicBloom.Koreo.Demos
             
             int hitWindow = gameController.HitWindowSampleWidth;
             if (noteEnd - noteStart <= 0) noteEnd = noteStart + hitWindow;
+            
+            // === Burn calculation ===
+            burn = Mathf.InverseLerp(noteStart, noteEnd, currentSample);
+            
+            // === Input handling ===
 
             if (!isPressed && inputValue > 0.5f &&!laneController.inputConsumed)
             {
