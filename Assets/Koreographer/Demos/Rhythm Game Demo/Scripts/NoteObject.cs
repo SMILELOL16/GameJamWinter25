@@ -130,8 +130,8 @@ namespace SonicBloom.Koreo.Demos
             if (durationSamples <= 0)
                 visualLength = gameController.WindowSizeInUnits *2f;
 
-            if (visuals.drawMode != SpriteDrawMode.Tiled)
-                visuals.drawMode = SpriteDrawMode.Tiled;
+            if (visuals.drawMode != SpriteDrawMode.Sliced)
+                visuals.drawMode = SpriteDrawMode.Sliced;
 
             Vector2 size = visuals.size;
             if (scaleAxis == ScaleAxis.Height)
