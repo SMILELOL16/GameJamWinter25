@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0345f6968f9c4241959624889b545dd, type: 3}
+  m_Name: PlayerSFX
+  m_EditorClassIdentifier: 
+  Entities:
+  - <Name>k__BackingField: ZippoOpen
+    <ID>k__BackingField: 1073741824
+    MulticlipsPlayMode: 2
+    _group: {fileID: 0}
+    Clips:
+    - AudioClip: {fileID: 8300000, guid: 596d9961b8401e045a8110c9b13d4edb, type: 3}
+      Volume: 1
+      Delay: 0
+      StartPosition: 0.292
+      EndPosition: 0.275
+      FadeIn: 0
+      FadeOut: 0
+      Weight: 0
+    - AudioClip: {fileID: 8300000, guid: f9aba1f1cd7a5c145b3cb4a93da54c6b, type: 3}
+      Volume: 1
+      Delay: 0
+      StartPosition: 0.295
+      EndPosition: 0.275
+      FadeIn: 0
+      FadeOut: 0
+      Weight: 0
+    <MasterVolume>k__BackingField: 1
+    <Loop>k__BackingField: 0
+    <SeamlessLoop>k__BackingField: 0
+    <TransitionTime>k__BackingField: 0
+    <SpatialSetting>k__BackingField: {fileID: 0}
+    <Priority>k__BackingField: 128
+    <Pitch>k__BackingField: 1.15
+    <PitchRandomRange>k__BackingField: 0.29999995
+    <VolumeRandomRange>k__BackingField: 0
+    <RandomFlags>k__BackingField: 1
+    SeamlessTransitionType: 0
+    TransitionTempo:
+      BPM: 0
+      Beats: 0
+    SnapToFullVolume: 0
+  - <Name>k__BackingField: ZippoClose
+    <ID>k__BackingField: 1073741825
+    MulticlipsPlayMode: 2
+    _group: {fileID: 0}
+    Clips:
+    - AudioClip: {fileID: 8300000, guid: c883628d7d683d34e9635eab8caf4598, type: 3}
+      Volume: 1
+      Delay: 0
+      StartPosition: 0.307
+      EndPosition: 0.268
+      FadeIn: 0
+      FadeOut: 0
+      Weight: 0
+    - AudioClip: {fileID: 8300000, guid: bd200e43543c47643adfc01e583a44e1, type: 3}
+      Volume: 1
+      Delay: 0
+      StartPosition: 0.362
+      EndPosition: 0.279
+      FadeIn: 0
+      FadeOut: 0
+      Weight: 0
+    - AudioClip: {fileID: 8300000, guid: a683703c6cd3ae2488ab773b295fc921, type: 3}
+      Volume: 1
+      Delay: 0
+      StartPosition: 0.154
+      EndPosition: 0.11
+      FadeIn: 0
+      FadeOut: 0
+      Weight: 0
+    <MasterVolume>k__BackingField: 1
+    <Loop>k__BackingField: 0
+    <SeamlessLoop>k__BackingField: 0
+    <TransitionTime>k__BackingField: 0
+    <SpatialSetting>k__BackingField: {fileID: 0}
+    <Priority>k__BackingField: 128
+    <Pitch>k__BackingField: 1.15
+    <PitchRandomRange>k__BackingField: 0.29999995
+    <VolumeRandomRange>k__BackingField: 0
+    <RandomFlags>k__BackingField: 1
+    SeamlessTransitionType: 0
+    TransitionTempo:
+      BPM: 0
+      Beats: 0
+    SnapToFullVolume: 0
+  - <Name>k__BackingField: ZippoStrike
+    <ID>k__BackingField: 1073741826
+    MulticlipsPlayMode: 2
+    _group: {fileID: 0}
+    Clips:
+    - AudioClip: {fileID: 8300000, guid: 760f5abcddfc5cb4b968651a6dd3a53d, type: 3}
+      Volume: 1
+      Delay: 0
+      StartPosition: 0.177
+      EndPosition: 0
+      FadeIn: 0
+      FadeOut: 0
+      Weight: 0
+    - AudioClip: {fileID: 8300000, guid: 0614baf590fce6c4abc250451e2d617f, type: 3}
+      Volume: 1
+      Delay: 0
+      StartPosition: 0.177
+      EndPosition: 0
+      FadeIn: 0
+      FadeOut: 0
+      Weight: 0
+    - AudioClip: {fileID: 8300000, guid: 7e28bd34da5eca84b8643c98dee431d7, type: 3}
+      Volume: 1
+      Delay: 0
+      StartPosition: 0.224
+      EndPosition: 0
+      FadeIn: 0
+      FadeOut: 0
+      Weight: 0
+    <MasterVolume>k__BackingField: 1
+    <Loop>k__BackingField: 0
+    <SeamlessLoop>k__BackingField: 0
+    <TransitionTime>k__BackingField: 0
+    <SpatialSetting>k__BackingField: {fileID: 0}
+    <Priority>k__BackingField: 128
+    <Pitch>k__BackingField: 0.925
+    <PitchRandomRange>k__BackingField: 0.35000002
+    <VolumeRandomRange>k__BackingField: 0
+    <RandomFlags>k__BackingField: 1
+    SeamlessTransitionType: 0
+    TransitionTempo:
+      BPM: 0
+      Beats: 0
+    SnapToFullVolume: 0
+  - <Name>k__BackingField: Flame
+    <ID>k__BackingField: 1073741827
+    MulticlipsPlayMode: 0
+    _group: {fileID: 0}
+    Clips:
+    - AudioClip: {fileID: 8300000, guid: 9f62e707a2416ca4b87f06b7352e1c3b, type: 3}
+      Volume: 1
+      Delay: 0
+      StartPosition: 0.533
+      EndPosition: 0.033
+      FadeIn: 0
+      FadeOut: 0
+      Weight: 0
+    <MasterVolume>k__BackingField: 1
+    <Loop>k__BackingField: 1
+    <SeamlessLoop>k__BackingField: 0
+    <TransitionTime>k__BackingField: 0
+    <SpatialSetting>k__BackingField: {fileID: 0}
+    <Priority>k__BackingField: 128
+    <Pitch>k__BackingField: 0.93395
+    <PitchRandomRange>k__BackingField: 0.13209999
+    <VolumeRandomRange>k__BackingField: 0
+    <RandomFlags>k__BackingField: 1
+    SeamlessTransitionType: 0
+    TransitionTempo:
+      BPM: 0
+      Beats: 0
+    SnapToFullVolume: 0
+  Group: {fileID: 0}
+  <AssetName>k__BackingField: PlayerSFX
+  _assetGUID: 0098c661b601eaa49a9ffd3048ccd2ce
