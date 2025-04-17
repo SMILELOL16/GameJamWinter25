@@ -1931,7 +1931,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.18490559, g: 0.15315765, b: 0.16963443, a: 1}
+  m_BackGroundColor: {r: 0.34307584, g: 0.38714913, b: 0.4339623, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e7ae7f4e5664a02863fb0d23d42e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0.83081025, b: 0.7905661, a: 1}
+  color: {r: 0.8627451, g: 0.73661214, b: 0.5647059, a: 1}
   targetVisuals: {fileID: 1146996547}
   inputButtonAction:
     m_UseReference: 1
@@ -3540,13 +3540,25 @@ PrefabInstance:
       propertyPath: laneController
       value: 
       objectReference: {fileID: 1146996549}
+    - target: {fileID: 1046936221497811184, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374343021511807936, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374343021511807936, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.17
+      objectReference: {fileID: 0}
     - target: {fileID: 2338839020677393901, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.16
+      value: 3.05
       objectReference: {fileID: 0}
     - target: {fileID: 2338839020677393901, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.77
+      value: -3.97
       objectReference: {fileID: 0}
     - target: {fileID: 2338839020677393901, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3583,6 +3595,10 @@ PrefabInstance:
     - target: {fileID: 2684934296778481964, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
       propertyPath: m_Name
       value: PlayerHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896033632870335365, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

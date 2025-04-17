@@ -21,16 +21,16 @@ MonoBehaviour:
     - AudioClip: {fileID: 8300000, guid: 596d9961b8401e045a8110c9b13d4edb, type: 3}
       Volume: 1
       Delay: 0
-      StartPosition: 0.292
-      EndPosition: 0.275
+      StartPosition: 0.301
+      EndPosition: 0.315
       FadeIn: 0
       FadeOut: 0
       Weight: 0
     - AudioClip: {fileID: 8300000, guid: f9aba1f1cd7a5c145b3cb4a93da54c6b, type: 3}
       Volume: 1
       Delay: 0
-      StartPosition: 0.295
-      EndPosition: 0.275
+      StartPosition: 0.301
+      EndPosition: 0.318
       FadeIn: 0
       FadeOut: 0
       Weight: 0
@@ -101,24 +101,24 @@ MonoBehaviour:
     - AudioClip: {fileID: 8300000, guid: 760f5abcddfc5cb4b968651a6dd3a53d, type: 3}
       Volume: 1
       Delay: 0
-      StartPosition: 0.079
-      EndPosition: 0
+      StartPosition: 0.088
+      EndPosition: 0.172
       FadeIn: 0
       FadeOut: 0
       Weight: 0
     - AudioClip: {fileID: 8300000, guid: 0614baf590fce6c4abc250451e2d617f, type: 3}
       Volume: 1
       Delay: 0
-      StartPosition: 0.078
-      EndPosition: 0
+      StartPosition: 0.085
+      EndPosition: 0.245
       FadeIn: 0
       FadeOut: 0
       Weight: 0
     - AudioClip: {fileID: 8300000, guid: 7e28bd34da5eca84b8643c98dee431d7, type: 3}
       Volume: 1
       Delay: 0
-      StartPosition: 0.097
-      EndPosition: 0
+      StartPosition: 0.132
+      EndPosition: 0.175
       FadeIn: 0
       FadeOut: 0
       Weight: 0
