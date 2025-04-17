@@ -224,7 +224,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: d9e686d2974ee6342892e218bd3a49d0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -288,6 +288,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _animatorStateBool: IsZippoOpen
 --- !u!210 &2725166291335761434
 SortingGroup:
   m_ObjectHideFlags: 0
