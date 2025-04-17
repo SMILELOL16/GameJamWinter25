@@ -345,7 +345,7 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.60188675, g: 1, b: 0.8866331, a: 1}
+  m_Color: {r: 0.87358487, g: 1, b: 0.96405846, a: 1}
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
@@ -1638,7 +1638,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.06
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e7ae7f4e5664a02863fb0d23d42e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.98490566, g: 0.8761455, b: 0.72660017, a: 1}
+  color: {r: 1, g: 0.7075472, b: 0.7367924, a: 1}
   targetVisuals: {fileID: 1146996547}
   inputButtonAction:
     m_UseReference: 1
@@ -3540,6 +3540,18 @@ PrefabInstance:
       propertyPath: laneController
       value: 
       objectReference: {fileID: 1146996549}
+    - target: {fileID: 1184259823841448736, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.45860285
+      objectReference: {fileID: 0}
+    - target: {fileID: 1184259823841448736, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.88864136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1184259823841448736, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 125.406
+      objectReference: {fileID: 0}
     - target: {fileID: 2338839020677393901, guid: 1cef46415db76ea4a9f5badd0b7ec121, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.05
